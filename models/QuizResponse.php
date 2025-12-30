@@ -35,4 +35,9 @@ class QuizResponse extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::class, ['id' => 'userId']);
     }
+
+    public function getCorrectCount(): int
+    {
+        return $this->getQuizResponseAnswers()->andWhere(['isCorrect' => true])->count();
+    }
 }

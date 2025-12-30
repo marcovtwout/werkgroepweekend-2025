@@ -38,6 +38,7 @@ $this->registerMetaTag(['name' => 'viewport', 'content' => 'width=device-width, 
         'items' => [
             ['label' => 'Logs', 'url' => ['log/index']],
             ['label' => 'Users', 'url' => ['user/index']],
+            ['label' => 'Quiz responses', 'url' => ['quiz-response/index']],
             Yii::$app->user->isGuest
                 ? ''
                 : '<li class="nav-item">'
