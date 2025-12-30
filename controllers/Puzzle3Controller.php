@@ -12,7 +12,7 @@ class Puzzle3Controller extends BaseController
         }
 
         return $this->render('index', [
-            'previousResult' => $user->puzzle2Result,
+            'pdfTitle' => $user->puzzle2Pdf,
         ]);
     }
 }

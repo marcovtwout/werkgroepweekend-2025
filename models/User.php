@@ -11,8 +11,8 @@ use Yii;
  * @property string $username
  * @property string $passwordHash
  * @property int $currentPuzzle
- * @property string $puzzle2Result
  * @property string $puzzle2Pdf
+ * @property string $puzzle3Result
  *
  * @property Log[] $logs
  * @property QuizResponse $quizResponse
