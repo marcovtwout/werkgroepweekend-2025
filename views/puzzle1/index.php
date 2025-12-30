@@ -1,10 +1,10 @@
 <?php
 
-use yii\base\DynamicModel;
+use app\models\forms\Puzzle1Form;
 use yii\bootstrap5\ActiveForm;
 use yii\bootstrap5\Html;
 
-/** @var DynamicModel $model */
+/** @var Puzzle1Form $model */
 
 ?>
 
@@ -25,7 +25,7 @@ use yii\bootstrap5\Html;
 
         <div class="form-group">
             <div>
-                <?= Html::submitButton('Inloggen', ['class' => 'btn btn-primary']) ?>
+                <?= Html::submitButton('Inloggen', ['class' => 'btn btn-success']) ?>
             </div>
         </div>
 

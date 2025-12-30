@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\forms\Puzzle1Form;
 use app\models\Log;
 use Yii;
 use yii\base\DynamicModel;
@@ -15,18 +16,7 @@ class Puzzle1Controller extends BaseController
             return $this->goHome();
         }
 
-        $model = new DynamicModel(['answer']);
-        $model->addRule('answer', 'required');
-        $model->addRule('answer', function ($attribute) {
-            $correct =
-                str_contains($this->$attribute, 'suske')
-                && str_contains($this->$attribute, 'wiske');
-
-            if (!$correct) {
-                $this->addError($attribute, 'Helaas!');
-            };
-        });
-
+        $model = new Puzzle1Form;
         if ($model->load(Yii::$app->request->post())) {
             Log::addEntry($user, 'puzzle1', $model->answer);
             if ($model->validate()) {
