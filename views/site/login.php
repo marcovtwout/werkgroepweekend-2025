@@ -10,34 +10,28 @@ use yii\bootstrap5\Html;
 $this->title = 'Inloggen';
 
 ?>
-<div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <div class="row">
-        <div class="col-lg-5">
+<div class="text-center">
+    <img src="<?= Yii::$app->urlManager->baseUrl ?>/img/logo.jpg" width="500" /><br>
+    <audio controls autoplay src="<?= Yii::$app->urlManager->baseUrl ?>/audio/widm-intro.m4a"></audio>
+</div>
 
-            <?php $form = ActiveForm::begin([
-                'id' => 'login-form',
-                'fieldConfig' => [
-                    'template' => "{label}\n{input}\n{error}",
-                    'labelOptions' => ['class' => 'col-lg-1 col-form-label mr-lg-3'],
-                    'inputOptions' => ['class' => 'col-lg-3 form-control'],
-                    'errorOptions' => ['class' => 'col-lg-7 invalid-feedback'],
-                ],
-            ]); ?>
+<div class="row mt-5">
+    <div class="col-sm-6 offset-sm-3">
+        <?php $form = ActiveForm::begin([
+            'enableClientValidation' => false,
+        ]); ?>
 
-            <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+        <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
 
-            <?= $form->field($model, 'password')->passwordInput() ?>
+        <?= $form->field($model, 'password')->passwordInput() ?>
 
-            <div class="form-group">
-                <div>
-                    <?= Html::submitButton('Inloggen', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-                </div>
+        <div class="form-group">
+            <div>
+                <?= Html::submitButton('Inloggen', ['class' => 'btn btn-primary']) ?>
             </div>
-
-            <?php ActiveForm::end(); ?>
-
         </div>
+
+        <?php ActiveForm::end(); ?>
     </div>
 </div>
