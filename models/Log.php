@@ -31,7 +31,7 @@ class Log extends \yii\db\ActiveRecord
         return $this->hasOne(User::class, ['id' => 'userId']);
     }
 
-    public static function addEntry(User $user, string $action, mixed $data)
+    public static function addEntry(User $user, string $action, mixed $data = '')
     {
         $model = new self;
         $model->userId = $user->id;
