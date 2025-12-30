@@ -15,12 +15,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+    <?= Html::a('Bekijk logs', ['log/index', 'userId' => $model->id], ['class' => 'btn btn-secondary']) ?>
+
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'username',
             'currentPuzzle',
             'isAdmin:boolean',
+            'puzzle2Pdf',
+            'puzzle3Result',
         ],
     ]) ?>
 

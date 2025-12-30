@@ -11,10 +11,10 @@ use yii\web\NotFoundHttpException;
  */
 class LogController extends BaseController
 {
-    public function actionIndex()
+    public function actionIndex($userId = '')
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Log::find(),
+            'query' => Log::find()->andWhere($userId ? ['userId' => $userId] : []),
             'pagination' => [
                 'pageSize' => 50
             ],
