@@ -5,6 +5,7 @@
 
 use app\assets\AppAsset;
 use app\widgets\Alert;
+use yii\bootstrap5\Breadcrumbs;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\Nav;
 use yii\bootstrap5\NavBar;
@@ -22,7 +23,7 @@ $this->registerMetaTag(['name' => 'viewport', 'content' => 'width=device-width, 
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body data-bs-theme="dark" class="frontend">
+<body data-bs-theme="dark" class="backend">
 <?php $this->beginBody() ?>
 
 <header id="header">
@@ -35,7 +36,8 @@ $this->registerMetaTag(['name' => 'viewport', 'content' => 'width=device-width, 
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],
         'items' => [
-            ['label' => 'Admin', 'url' => ['/admin'], 'visible' => Yii::$app->user->identity->getIsAdmin()],
+            ['label' => 'Logs', 'url' => ['log/index']],
+            ['label' => 'Users', 'url' => ['user/index']],
             Yii::$app->user->isGuest
                 ? ''
                 : '<li class="nav-item">'
@@ -54,6 +56,10 @@ $this->registerMetaTag(['name' => 'viewport', 'content' => 'width=device-width, 
 
 <main id="main" role="main">
     <div class="container">
+        <?php if (!empty($this->params['breadcrumbs'])): ?>
+            <?= Breadcrumbs::widget(['links' => $this->params['breadcrumbs']]) ?>
+        <?php endif ?>
+
         <?= Alert::widget() ?>
         <?= $content ?>
     </div>
