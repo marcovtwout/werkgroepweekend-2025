@@ -11,6 +11,9 @@ use Yii;
  * @property string $username
  * @property string $passwordHash
  * @property int $currentPuzzle
+ *
+ * @property Log[] $logs
+ * @property QuizResponse $quizResponse
  */
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
@@ -20,6 +23,16 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public static function tableName()
     {
         return 'User';
+    }
+
+    public function getLogs(): ActiveQuery
+    {
+        return $this->hasMany(Log::class, ['userId' => 'id']);
+    }
+
+    public function getQuizResponse(): ActiveQuery
+    {
+        return $this->hasOne(QuizResponse::class, ['userId' => 'id']);
     }
 
     public static function findIdentity($id)
@@ -66,7 +79,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return $password;
     }
 
-    public function isAdmin(): bool
+    public function getIsAdmin(): bool
     {
         return in_array($this->username, ['marco', 'joep']); // quick n dirty
     }
