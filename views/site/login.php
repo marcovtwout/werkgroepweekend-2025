@@ -28,7 +28,7 @@ $this->title = 'Inloggen';
 
         <div class="form-group">
             <div>
-                <?= Html::submitButton('Inloggen', ['class' => 'btn btn-primary']) ?>
+                <?= Html::submitButton('Inloggen', ['class' => 'btn btn-success']) ?>
             </div>
         </div>
 
