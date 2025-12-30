@@ -5,34 +5,16 @@ namespace app\controllers;
 use app\models\Log;
 use Yii;
 use yii\base\DynamicModel;
-use yii\filters\AccessControl;
-use yii\web\Controller;
-use yii\web\Response;
-use yii\filters\VerbFilter;
-use app\models\LoginForm;
 
-class Puzzle1Controller extends Controller
+class Puzzle1Controller extends BaseController
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::class,
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-        ];
-    }
-
     public function actionIndex()
     {
+        $user = $this->getUser();
+        if ($user->currentPuzzle !== 1) {
+            return $this->goHome();
+        }
+
         $model = new DynamicModel(['answer']);
         $model->addRule('answer', 'required');
         $model->addRule('answer', function ($attribute) {
@@ -46,10 +28,12 @@ class Puzzle1Controller extends Controller
         });
 
         if ($model->load(Yii::$app->request->post())) {
-            Log::addEntry(Yii::$app->user->identity, 'puzzle1', $model->answer);
+            Log::addEntry($user, 'puzzle1', $model->answer);
             if ($model->validate()) {
-                // goed!
-                exit;
+                $user->currentPuzzle++;
+                $user->save();
+
+                return $this->redirect(['index']);
             }
         }
 

@@ -9,7 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 
-class SiteController extends Controller
+class SiteController extends BaseController
 {
     /**
      * {@inheritdoc}
@@ -47,7 +47,9 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->redirect(['puzzle1/index']);
+        $user = $this->getUser();
+
+        return $this->redirect([sprintf('puzzle%d/index', $user->currentPuzzle)]);
     }
 
     public function actionLogin()

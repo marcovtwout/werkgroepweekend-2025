@@ -1,14 +1,13 @@
 <?php
 
-namespace app\modules\admin\controllers;
+namespace app\controllers;
 
+use app\models\User;
 use Yii;
 use yii\filters\AccessControl;
-abstract class BaseController extends \app\controllers\BaseController
+use yii\web\Controller;
+abstract class BaseController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
     public function behaviors()
     {
         return [
@@ -18,12 +17,14 @@ abstract class BaseController extends \app\controllers\BaseController
                     [
                         'allow' => true,
                         'roles' => ['@'],
-                        'matchCallback' => function () {
-                            return Yii::$app->user->identity->isAdmin();
-                        }
                     ],
                 ],
             ],
         ];
+    }
+
+    protected function getUser(): User
+    {
+        return Yii::$app->user->identity;
     }
 }

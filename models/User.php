@@ -10,6 +10,7 @@ use Yii;
  * @property int $id
  * @property string $username
  * @property string $passwordHash
+ * @property int $currentPuzzle
  */
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
