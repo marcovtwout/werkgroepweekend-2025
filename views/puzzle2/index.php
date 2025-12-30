@@ -64,7 +64,6 @@ CSS);
                     <?php $fakeCorrectIndex = array_rand($question->quizAnswers) ?>
                     <?php foreach($question->quizAnswers as $answerIndex => $answer): ?>
                         <div class="answer mb-3">
-                            <?= (int) $answer->isCorrect ?>
                             <?php $inputId = sprintf('q%d-a%d', $questionIndex, $answerIndex); ?>
                             <input
                                 type="radio"
