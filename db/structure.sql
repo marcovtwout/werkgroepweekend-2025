@@ -16,80 +16,81 @@
 
 -- Dumping structure for table werkgroep2025.Log
 CREATE TABLE IF NOT EXISTS `Log` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `userId` int(10) unsigned NOT NULL,
-  `action` varchar(255) NOT NULL,
-  `data` text NOT NULL,
-  `datetime` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK__User` (`userId`),
-  CONSTRAINT `FK__User` FOREIGN KEY (`userId`) REFERENCES `User` (`id`) ON UPDATE CASCADE
+                                     `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+                                     `userId` int(10) unsigned NOT NULL,
+                                     `action` varchar(255) NOT NULL,
+                                     `data` text NOT NULL,
+                                     `datetime` datetime NOT NULL,
+                                     PRIMARY KEY (`id`),
+                                     KEY `FK__User` (`userId`),
+                                     CONSTRAINT `FK__User` FOREIGN KEY (`userId`) REFERENCES `User` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
 -- Dumping structure for table werkgroep2025.QuizAnswer
 CREATE TABLE IF NOT EXISTS `QuizAnswer` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `questionId` int(10) unsigned NOT NULL,
-  `position` int(10) unsigned NOT NULL,
-  `text` varchar(255) NOT NULL,
-  `isCorrect` tinyint(1) unsigned NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`),
-  KEY `FK_QuizAnswer_QuizQuestion` (`questionId`),
-  CONSTRAINT `FK_QuizAnswer_QuizQuestion` FOREIGN KEY (`questionId`) REFERENCES `QuizQuestion` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=817 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+                                            `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+                                            `questionId` int(10) unsigned NOT NULL,
+                                            `position` int(10) unsigned NOT NULL,
+                                            `text` varchar(255) NOT NULL,
+                                            `isCorrect` tinyint(1) unsigned NOT NULL DEFAULT 0,
+                                            `isSpongebob` tinyint(1) unsigned NOT NULL DEFAULT 0,
+                                            PRIMARY KEY (`id`),
+                                            KEY `FK_QuizAnswer_QuizQuestion` (`questionId`),
+                                            CONSTRAINT `FK_QuizAnswer_QuizQuestion` FOREIGN KEY (`questionId`) REFERENCES `QuizQuestion` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=1327 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
 -- Dumping structure for table werkgroep2025.QuizQuestion
 CREATE TABLE IF NOT EXISTS `QuizQuestion` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `nr` int(10) unsigned NOT NULL,
-  `title` varchar(255) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=181 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+                                              `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+                                              `nr` int(10) unsigned NOT NULL,
+                                              `title` varchar(255) NOT NULL DEFAULT '0',
+                                              PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=282 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
 -- Dumping structure for table werkgroep2025.QuizResponse
 CREATE TABLE IF NOT EXISTS `QuizResponse` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `userId` int(10) unsigned NOT NULL,
-  `datetime` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `userId` (`userId`),
-  CONSTRAINT `FK_QuizResponse_User` FOREIGN KEY (`userId`) REFERENCES `User` (`id`) ON UPDATE CASCADE
+                                              `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+                                              `userId` int(10) unsigned NOT NULL,
+                                              `datetime` datetime NOT NULL,
+                                              PRIMARY KEY (`id`),
+                                              UNIQUE KEY `userId` (`userId`),
+                                              CONSTRAINT `FK_QuizResponse_User` FOREIGN KEY (`userId`) REFERENCES `User` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
 -- Dumping structure for table werkgroep2025.QuizResponseAnswer
 CREATE TABLE IF NOT EXISTS `QuizResponseAnswer` (
-  `quizResponseId` int(10) unsigned NOT NULL,
-  `quizQuestionId` int(10) unsigned NOT NULL,
-  `quizAnswerId` int(10) unsigned NOT NULL,
-  `isCorrect` tinyint(1) unsigned DEFAULT NULL,
-  PRIMARY KEY (`quizResponseId`,`quizQuestionId`),
-  KEY `FK__QuizQuestion` (`quizQuestionId`),
-  KEY `FK__QuizAnswer` (`quizAnswerId`),
-  CONSTRAINT `FK__QuizAnswer` FOREIGN KEY (`quizAnswerId`) REFERENCES `QuizAnswer` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `FK__QuizQuestion` FOREIGN KEY (`quizQuestionId`) REFERENCES `QuizQuestion` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `FK__QuizResponse` FOREIGN KEY (`quizResponseId`) REFERENCES `QuizResponse` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                                                    `quizResponseId` int(10) unsigned NOT NULL,
+                                                    `quizQuestionId` int(10) unsigned NOT NULL,
+                                                    `quizAnswerId` int(10) unsigned NOT NULL,
+                                                    `isCorrect` tinyint(1) unsigned DEFAULT NULL,
+                                                    PRIMARY KEY (`quizResponseId`,`quizQuestionId`),
+                                                    KEY `FK__QuizQuestion` (`quizQuestionId`),
+                                                    KEY `FK__QuizAnswer` (`quizAnswerId`),
+                                                    CONSTRAINT `FK__QuizAnswer` FOREIGN KEY (`quizAnswerId`) REFERENCES `QuizAnswer` (`id`) ON UPDATE CASCADE,
+                                                    CONSTRAINT `FK__QuizQuestion` FOREIGN KEY (`quizQuestionId`) REFERENCES `QuizQuestion` (`id`) ON UPDATE CASCADE,
+                                                    CONSTRAINT `FK__QuizResponse` FOREIGN KEY (`quizResponseId`) REFERENCES `QuizResponse` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
 -- Dumping structure for table werkgroep2025.User
 CREATE TABLE IF NOT EXISTS `User` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `username` varchar(50) NOT NULL,
-  `passwordHash` varchar(255) NOT NULL,
-  `currentPuzzle` int(11) NOT NULL DEFAULT 1,
-  `puzzle2Pdf` varchar(255) DEFAULT NULL,
-  `puzzle3Result` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`)
+                                      `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+                                      `username` varchar(50) NOT NULL,
+                                      `passwordHash` varchar(255) NOT NULL,
+                                      `currentPuzzle` int(11) NOT NULL DEFAULT 1,
+                                      `puzzle2Pdf` varchar(255) DEFAULT NULL,
+                                      `puzzle3Result` varchar(255) DEFAULT NULL,
+                                      PRIMARY KEY (`id`),
+                                      UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.

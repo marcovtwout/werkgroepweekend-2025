@@ -27,8 +27,9 @@ class QuizController extends Controller
             foreach($answers as $answerIndex => $answerText) {
                 $answer = new QuizAnswer();
                 $answer->questionId = $question->id;
-                $answer->text = trim(str_replace('[Correct]', '', $answerText));
+                $answer->text = trim(preg_replace('#\[.*] #', '', $answerText));
                 $answer->isCorrect = str_contains($answerText, '[Correct]');
+                $answer->isSpongebob = str_contains($answerText, '[Spongebob]');
                 $answer->position = $answerIndex+1;
                 $answer->save();
             }

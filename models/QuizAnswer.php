@@ -12,6 +12,7 @@ use yii\db\ActiveQuery;
  * @property int $questionId
  * @property string $text
  * @property int $isCorrect
+ * @property int $isSpongebob
  *
  * @property QuizQuestion $question
  */
