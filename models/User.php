@@ -95,6 +95,6 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 
     public function getIsAdmin(): bool
     {
-        return in_array($this->username, ['marco', 'joep']); // quick n dirty
+        return in_array($this->username, ['marco']); // quick n dirty
     }
 }
