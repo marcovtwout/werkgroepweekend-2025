@@ -14,7 +14,7 @@ $this->title = 'Leesvoer';
 <h3>Leesvoer</h3>
 
 <p>
-    Voor de volgende puzzel zal je moeten samenwerken met de andere kandidaten.
+    Vanaf hier mag je samenwerken met de andere kandidaten.
 </p>
 
 <div class="card">
