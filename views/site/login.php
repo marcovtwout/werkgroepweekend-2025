@@ -12,7 +12,7 @@ $this->title = 'Inloggen';
 ?>
 
 <div class="text-center">
-    <img src="<?= Yii::$app->urlManager->baseUrl ?>/img/logo.jpg" width="500" /><br>
+    <img src="<?= Yii::$app->urlManager->baseUrl ?>/img/logo.jpg" style="width: 500px; padding: 20px" /><br>
     <audio controls autoplay src="<?= Yii::$app->urlManager->baseUrl ?>/audio/widm-intro.m4a"></audio>
 </div>
 

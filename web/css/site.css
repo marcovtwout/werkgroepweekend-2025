@@ -2,14 +2,7 @@ body {
     background-color: #051F18;
 }
 
-.frontend .container {
-    max-width: 600px !important;
-}
-
-main > .container {
+header + #main {
     padding: 70px 15px 20px;
 }
 
-.grid-view th {
-    white-space: nowrap;
-}

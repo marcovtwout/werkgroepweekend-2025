@@ -15,6 +15,7 @@ AppAsset::register($this);
 $this->registerCsrfMetaTags();
 $this->registerMetaTag(['charset' => Yii::$app->charset], 'charset');
 $this->registerMetaTag(['name' => 'viewport', 'content' => 'width=device-width, initial-scale=1, shrink-to-fit=no']);
+$this->registerCssFile(Yii::$app->urlManager->baseUrl . '/css/admin.css', ['depends' => [AppAsset::class]]);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -23,7 +24,7 @@ $this->registerMetaTag(['name' => 'viewport', 'content' => 'width=device-width, 
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body data-bs-theme="dark" class="backend">
+<body data-bs-theme="dark">
 <?php $this->beginBody() ?>
 
 <header id="header">
