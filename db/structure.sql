@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `Log` (
                                      PRIMARY KEY (`id`),
                                      KEY `FK__User` (`userId`),
                                      CONSTRAINT `FK__User` FOREIGN KEY (`userId`) REFERENCES `User` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `QuizAnswer` (
                                             PRIMARY KEY (`id`),
                                             KEY `FK_QuizAnswer_QuizQuestion` (`questionId`),
                                             CONSTRAINT `FK_QuizAnswer_QuizQuestion` FOREIGN KEY (`questionId`) REFERENCES `QuizQuestion` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1327 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1421 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `QuizQuestion` (
                                               `nr` int(10) unsigned NOT NULL,
                                               `title` varchar(255) NOT NULL DEFAULT '0',
                                               PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=282 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=302 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `QuizResponse` (
                                               PRIMARY KEY (`id`),
                                               UNIQUE KEY `userId` (`userId`),
                                               CONSTRAINT `FK_QuizResponse_User` FOREIGN KEY (`userId`) REFERENCES `User` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
@@ -86,8 +86,10 @@ CREATE TABLE IF NOT EXISTS `User` (
                                       `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
                                       `username` varchar(50) NOT NULL,
                                       `passwordHash` varchar(255) NOT NULL,
-                                      `currentPuzzle` int(11) NOT NULL DEFAULT 1,
+                                      `currentPuzzle` varchar(50) NOT NULL DEFAULT '1',
                                       `puzzle2Pdf` varchar(255) DEFAULT NULL,
+                                      `puzzle3Question` varchar(255) DEFAULT NULL,
+                                      `puzzle3Answer` varchar(255) DEFAULT NULL,
                                       `puzzle3Result` varchar(255) DEFAULT NULL,
                                       PRIMARY KEY (`id`),
                                       UNIQUE KEY `username` (`username`)

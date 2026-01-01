@@ -28,74 +28,79 @@ $this->registerCss(<<<CSS
 
 CSS);
 
+$this->title = 'Test';
+
 ?>
 
-<div class="row">
-    <?php $form = ActiveForm::begin([
-        'enableClientValidation' => false,
-    ]); ?>
+<?php $form = ActiveForm::begin([
+    'enableClientValidation' => false,
+]); ?>
 
-    <div id="questions">
-        <div id="question--1" class="question collapse show" data-bs-parent="#questions">
-            <div class="progress">
-                <div class="progress-bar bg-success" role="progressbar"></div>
-            </div>
-
-            <h4 class="mt-3 mb-4">Test</h4>
-
-            <p>
-                Puzzel 2 uitleg
-            </p>
-
-            <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#question-0">
-                Start de test
-            </button>
+<div id="questions">
+    <div id="question--1" class="question collapse show" data-bs-parent="#questions">
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar"></div>
         </div>
 
-        <?php foreach($questions as $questionIndex => $question): ?>
-            <div id="question-<?= $questionIndex?>" class="question collapse" data-bs-parent="#questions">
-                <div class="progress">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: <?= round(($questionIndex / count($questions)) * 100) ?>%"></div>
-                </div>
+        <h4 class="mt-3 mb-4">Test</h4>
 
-                <h4 class="mt-3 mb-4"><?= Html::encode($question->getFullTitle()) ?></h4>
+        <p>
+            Zonder ook maar enige informatie te hebben ontvangen begin je gelijk met test en executie. Wat een spel!
+        </p>
+        <p>
+            We zullen eerst eens zien hoe het gesteld is met jouw kennis van deze iconische stripserie. Beantwoord de volgende vragen zonder digitale hulpmiddelen.
+        </p>
 
-                <div class="answers">
-                    <?php $fakeCorrectIndex = array_rand($question->quizAnswers) ?>
-                    <?php foreach($question->quizAnswers as $answerIndex => $answer): ?>
-                        <div class="answer mb-3">
-                            <?php $inputId = sprintf('q%d-a%d', $questionIndex, $answerIndex); ?>
-                            <input
-                                type="radio"
-                                class="btn-check"
-                                name="<?= Html::getInputName($model, 'answers[' . $questionIndex . ']') ?>"
-                                id="<?= $inputId ?>"
-                                value="<?= $answerIndex ?>"
-                                data-correct="<?= (int) $answerIndex === $fakeCorrectIndex; ?>" <?php // fake hint, har har.. ?>
-                                autocomplete="off">
-                            <label class="btn btn-secondary" for="<?= $inputId ?>">
-                                <?= Html::encode($answer->text) ?>
-                            </label>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-
-                <button class="btn btn-outline-success next mt-5" type="button" data-bs-toggle="collapse" data-bs-target="#question-<?= $questionIndex+1 ?>" disabled>
-                    Volgende vraag
-                </button>
-            </div>
-        <?php endforeach; ?>
-
-        <div id="question-<?= $questionIndex+1?>" class="question collapse" data-bs-parent="#questions">
-            <div class="progress">
-                <div class="progress-bar bg-success" role="progressbar" style="width: 100%"></div>
-            </div>
-
-            <h4 class="mt-3 mb-4">Klaar..</h4>
-
-            <?= Html::submitButton('Versturen', ['class' => 'btn btn-success']) ?>
-        </div>
+        <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#question-0">
+            Start de test
+        </button>
     </div>
 
-    <?php ActiveForm::end(); ?>
+    <?php foreach($questions as $questionIndex => $question): ?>
+        <div id="question-<?= $questionIndex?>" class="question collapse" data-bs-parent="#questions">
+            <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar" style="width: <?= round(($questionIndex / count($questions)) * 100) ?>%"></div>
+            </div>
+
+            <h4 class="mt-3 mb-4"><?= Html::encode($question->getFullTitle()) ?></h4>
+
+            <div class="answers">
+                <?php $fakeCorrectIndex = array_rand($question->quizAnswers) ?>
+                <?php foreach($question->quizAnswers as $answerIndex => $answer): ?>
+                    <div class="answer mb-3">
+                        <?php $inputId = sprintf('q%d-a%d', $questionIndex, $answerIndex); ?>
+                        <input
+                            type="radio"
+                            class="btn-check"
+                            name="<?= Html::getInputName($model, 'answers[' . $questionIndex . ']') ?>"
+                            id="<?= $inputId ?>"
+                            value="<?= $answerIndex ?>"
+                            data-correct="<?= (int) $answerIndex === $fakeCorrectIndex; ?>" <?php // fake hint, har har.. ?>
+                            autocomplete="off">
+                        <label class="btn btn-secondary" for="<?= $inputId ?>">
+                            <?= Html::encode($answer->text) ?>
+                        </label>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+            <button class="btn btn-outline-success next mt-5" type="button" data-bs-toggle="collapse" data-bs-target="#question-<?= $questionIndex+1 ?>" disabled>
+                Volgende vraag
+            </button>
+        </div>
+    <?php endforeach; ?>
+
+    <div id="question-<?= $questionIndex+1?>" class="question collapse" data-bs-parent="#questions">
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%"></div>
+        </div>
+
+        <h4 class="mt-3 mb-4">Klaar met de test?</h4>
+
+        <p>Het zit erop! Haal even diep adem en stuur je antwoorden in.</p>
+
+        <?= Html::submitButton('Verzenden', ['class' => 'btn btn-success']) ?>
+    </div>
 </div>
+
+<?php ActiveForm::end(); ?>

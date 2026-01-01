@@ -1,37 +1,40 @@
 <?php
 
+use app\models\forms\Puzzle3Form;
+use yii\bootstrap5\ActiveForm;
 use yii\bootstrap5\Html;
 
-/** @var \yii\web\View $this */
-/** @var string $pdfTitle */
+/** @var Puzzle3Form $model */
+/** @var string $puzzle3Question */
+
+$this->title = 'Leesvoer';
 
 ?>
 
-<div class="row" id="collapseParent">
-    <div class="text-center">
-        <audio controls autoplay src="<?= Yii::$app->urlManager->baseUrl ?>/audio/widm-intro.m4a"></audio>
-    </div>
+<h3>Leesvoer</h3>
 
-    <div class="collapse show">
-        <p>Start het spannende muziekje..</p>
+<p>
+    Voor de volgende puzzel zal je moeten samenwerken met de andere kandidaten.
+</p>
 
-        <p>En check of je de eliminatie hebt overleeft:</p>
-        <button class="btn btn-success next mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#result">
-            Spannend!
-        </button>
-    </div>
+<div class="card">
+    <div class="card-body">
+        <p>
+            <strong><?= Html::encode($puzzle3Question) ?></strong>
+        </p>
 
-    <div id="result" class="collapse" data-bs-parent="#collapseParent">
-        <div class="text-center mt-2">
-            <img src="<?= Yii::$app->urlManager->baseUrl ?>/img/groenscherm.webp" width="500" /><br>
-            <h4 class="mt-2">Phew, groen scherm!</h4>
+        <div class="row mt-5">
+            <div class="col-sm-6">
+                <?php $form = ActiveForm::begin([
+                        'enableClientValidation' => false,
+                ]); ?>
+
+                <?= $form->field($model, 'answer')->textInput(['autofocus' => true])->label('Antwoord') ?>
+
+                <?= Html::submitButton('Verzenden', ['class' => 'btn btn-success']) ?>
+
+                <?php ActiveForm::end(); ?>
+            </div>
         </div>
-
-        <hr>
-
-        <p>De volgende opdracht wordt pas vrijgegeven als iedereen de test gemaakt heeft. Maar om je alvast voor te bereiden op de volgende ronde krijg je onderstaande -persoonlijke- informatie tot je beschikking:</p>
-        <ul>
-            <li>Download: <?= Html::a(Html::encode($pdfTitle), ['puzzle2/download-pdf']) ?></li>
-        </ul>
     </div>
 </div>

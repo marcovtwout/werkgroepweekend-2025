@@ -12,6 +12,8 @@ use Yii;
  * @property string $passwordHash
  * @property int $currentPuzzle
  * @property string $puzzle2Pdf
+ * @property string $puzzle3Question
+ * @property string $puzzle3Answer
  * @property string $puzzle3Result
  *
  * @property Log[] $logs
@@ -19,6 +21,13 @@ use Yii;
  */
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
+    const PUZZLE_1 = '1';
+    const PUZZLE_2_TEST = '2';
+    const PUZZLE_2_RESULT = '2.1';
+    const PUZZLE_2_ELIMINATION = '2.2';
+    const PUZZLE_3 = '3';
+    const PUZZLE_4 = '4';
+
     /**
      * {@inheritdoc}
      */

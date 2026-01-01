@@ -49,7 +49,7 @@ class SiteController extends BaseController
     {
         $user = $this->getUser();
 
-        return $this->redirect([sprintf('puzzle%d/index', $user->currentPuzzle)]);
+        return $this->redirect([sprintf('puzzle%d/index', floor($user->currentPuzzle))]);
     }
 
     public function actionLogin()
