@@ -4,6 +4,8 @@ namespace app\modules\admin\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
+use yii\web\ForbiddenHttpException;
+
 abstract class BaseController extends \app\controllers\BaseController
 {
     /**
@@ -20,9 +22,12 @@ abstract class BaseController extends \app\controllers\BaseController
                         'roles' => ['@'],
                         'matchCallback' => function () {
                             return Yii::$app->user->identity?->getIsAdmin() ?? false;
-                        }
+                        },
                     ],
                 ],
+                'denyCallback' => function () {
+                    throw new ForbiddenHttpException('Leuk geprobeerd.');
+                }
             ],
         ];
     }

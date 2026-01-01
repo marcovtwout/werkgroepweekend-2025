@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 
-    <h2>Answers</h2>
+    <h3>Answers</h3>
 
     <ul class="list-group">
         <?php foreach($model->quizResponseAnswers as $responseAnswer): ?>

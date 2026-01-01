@@ -24,6 +24,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'currentPuzzle',
             'isAdmin:boolean',
             'puzzle2Pdf',
+            'puzzle3Question',
+            'puzzle3Answer',
             'puzzle3Result',
         ],
     ]) ?>
