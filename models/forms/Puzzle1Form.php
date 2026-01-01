@@ -13,9 +13,10 @@ class Puzzle1Form extends Model
         return [
             [['answer'], 'required'],
             [['answer'], function ($attribute) {
+                $test = strtolower($this->$attribute);
                 $correct =
-                    str_contains($this->$attribute, 'suske')
-                    && str_contains($this->$attribute, 'wiske');
+                    str_contains($test, 'suske')
+                    && str_contains($test, 'wiske');
 
                 if (!$correct) {
                     $this->addError($attribute, 'Helaas!');

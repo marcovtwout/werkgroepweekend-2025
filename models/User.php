@@ -27,6 +27,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     const PUZZLE_2_ELIMINATION = '2.2';
     const PUZZLE_3 = '3';
     const PUZZLE_4 = '4';
+    const PUZZLE_5 = '5';
 
     /**
      * {@inheritdoc}

@@ -4,9 +4,8 @@ namespace app\models\forms;
 
 use yii\base\Model;
 
-class Puzzle3Form extends Model
+class Puzzle4Form extends Model
 {
-    public $correctAnswer;
     public $answer;
 
     public function rules()
@@ -14,7 +13,7 @@ class Puzzle3Form extends Model
         return [
             [['answer'], 'required'],
             [['answer'], function ($attribute) {
-                $correct = str_contains(strtolower($this->$attribute), strtolower($this->correctAnswer));
+                $correct = str_contains(strtolower($this->$attribute), 'spongebob');
 
                 if (!$correct) {
                     $this->addError($attribute, 'Helaas!');
