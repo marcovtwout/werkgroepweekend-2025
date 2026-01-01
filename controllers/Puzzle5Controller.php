@@ -84,7 +84,7 @@ class Puzzle5Controller extends BaseController
     private function rateLimitExceeded(User $user)
     {
         $previousResponses = $user->getQuizResponses()->orderBy(['datetime' => SORT_DESC])->all();
-        $backoffMinutes = 3 * count($previousResponses);
+        $backoffMinutes = 3 * (count($previousResponses) - 1);
         $latestDateTime = new DateTime($previousResponses[0]->datetime);
 
         return $latestDateTime->modify(sprintf('+%d minutes', $backoffMinutes)) > new DateTime();
