@@ -6,7 +6,6 @@ use app\models\forms\Puzzle1Form;
 use app\models\Log;
 use app\models\User;
 use Yii;
-use yii\base\DynamicModel;
 
 class Puzzle1Controller extends BaseController
 {

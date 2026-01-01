@@ -2,7 +2,6 @@
 
 namespace app\models\forms;
 
-use app\models\QuizAnswer;
 use app\models\QuizQuestion;
 use app\models\QuizResponse;
 use app\models\QuizResponseAnswer;

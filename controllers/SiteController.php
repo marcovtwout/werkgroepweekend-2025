@@ -2,12 +2,11 @@
 
 namespace app\controllers;
 
+use app\models\LoginForm;
 use Yii;
 use yii\filters\AccessControl;
-use yii\web\Controller;
-use yii\web\Response;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
+use yii\web\Response;
 
 class SiteController extends BaseController
 {

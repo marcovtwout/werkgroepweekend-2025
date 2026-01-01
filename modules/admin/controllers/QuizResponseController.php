@@ -4,7 +4,6 @@ namespace app\modules\admin\controllers;
 
 use app\models\QuizQuestion;
 use app\models\QuizResponse;
-use app\models\User;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 
