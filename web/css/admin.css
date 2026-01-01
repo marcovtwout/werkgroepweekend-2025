@@ -1,3 +1,9 @@
 .grid-view th {
     white-space: nowrap;
 }
+
+.log-index td:nth-child(3) {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-width: 300px;
+}
