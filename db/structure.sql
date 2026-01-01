@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `Log` (
                                      PRIMARY KEY (`id`),
                                      KEY `FK__User` (`userId`),
                                      CONSTRAINT `FK__User` FOREIGN KEY (`userId`) REFERENCES `User` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=126 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
@@ -59,9 +59,9 @@ CREATE TABLE IF NOT EXISTS `QuizResponse` (
                                               `userId` int(10) unsigned NOT NULL,
                                               `datetime` datetime NOT NULL,
                                               PRIMARY KEY (`id`),
-                                              UNIQUE KEY `userId` (`userId`),
+                                              KEY `userId` (`userId`) USING BTREE,
                                               CONSTRAINT `FK_QuizResponse_User` FOREIGN KEY (`userId`) REFERENCES `User` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
@@ -70,7 +70,8 @@ CREATE TABLE IF NOT EXISTS `QuizResponseAnswer` (
                                                     `quizResponseId` int(10) unsigned NOT NULL,
                                                     `quizQuestionId` int(10) unsigned NOT NULL,
                                                     `quizAnswerId` int(10) unsigned NOT NULL,
-                                                    `isCorrect` tinyint(1) unsigned DEFAULT NULL,
+                                                    `isCorrect` tinyint(1) unsigned NOT NULL,
+                                                    `isSpongebob` tinyint(1) unsigned NOT NULL,
                                                     PRIMARY KEY (`quizResponseId`,`quizQuestionId`),
                                                     KEY `FK__QuizQuestion` (`quizQuestionId`),
                                                     KEY `FK__QuizAnswer` (`quizAnswerId`),

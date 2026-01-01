@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\forms\Puzzle2Form;
 use app\models\Log;
 use app\models\QuizQuestion;
+use app\models\QuizResponse;
 use app\models\User;
 use DateTime;
 use Yii;
@@ -61,9 +62,23 @@ class Puzzle5Controller extends BaseController
         ]);
     }
 
-    public function actionPreviousResults()
+    public function actionResult()
     {
-        // @todo
+        $user = $this->getUser();
+        if ($user->currentPuzzle !== User::PUZZLE_5_RESULT) {
+            return $this->goHome();
+        }
+
+        $quizQuestions = QuizQuestion::findAllWithAnswersOrdered();
+        $quizResponses = QuizResponse::find()
+            ->orderBy(['datetime' => SORT_ASC])
+            ->groupBy(['userId'])
+            ->all();
+
+        return $this->render('result', [
+            'quizQuestions' => $quizQuestions,
+            'quizResponses' => $quizResponses,
+        ]);
     }
 
     private function rateLimitExceeded(User $user)

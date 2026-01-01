@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\controllers;
 
+use app\models\QuizQuestion;
 use app\models\QuizResponse;
 use app\models\User;
 use yii\data\ActiveDataProvider;
@@ -29,6 +30,20 @@ class QuizResponseController extends BaseController
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+        ]);
+    }
+
+    public function actionViewAll()
+    {
+        $quizQuestions = QuizQuestion::findAllWithAnswersOrdered();
+        $quizResponses = QuizResponse::find()
+            ->orderBy(['datetime' => SORT_ASC])
+            ->groupBy(['userId'])
+            ->all();
+
+        return $this->render('viewAll', [
+            'quizQuestions' => $quizQuestions,
+            'quizResponses' => $quizResponses,
         ]);
     }
 

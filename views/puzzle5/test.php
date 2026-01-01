@@ -37,8 +37,6 @@ $this->title = 'Sponzig';
 </p>
 <p>
     Je mag de test nu opnieuw maken. Lukt het om alle 10 de verborgen antwoorden correct te selecteren?
-    Dan krijg je van alle spelers de testresultaten uit de eerste ronde te zien. En dan lukt het misschien
-    om antwoord te geven op die ene vraag..
 </p>
 
 <?php $form = ActiveForm::begin([

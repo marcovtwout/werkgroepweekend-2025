@@ -22,7 +22,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'datetime',
             'correctCount',
             'spongebobCount',
-            'spongebobCount',
         ],
     ]) ?>
 
@@ -37,14 +36,16 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php endforeach; ?>
     </ul>
 
-    <h3>Answers (Spongebob)</h3>
+    <h3 class="mt-4">Answers (Spongebob)</h3>
 
     <ul class="list-group">
         <?php foreach($model->quizResponseAnswers as $responseAnswer): ?>
-            <li class="list-group-item list-group-item-<?= $responseAnswer->isSpongebob ? 'success' : 'danger' ?>">
-                <strong><?= Html::encode($responseAnswer->quizQuestion->getFullTitle()) ?></strong><br>
-                Gegeven antwoord: <?= Html::encode($responseAnswer->quizAnswer->text) ?> <?= ($responseAnswer->isCorrect ? '(Correct)' : '(Fout)') ?>
-            </li>
+            <?php if ($responseAnswer->quizQuestion->isSpongebobQuestion()): ?>
+                <li class="list-group-item list-group-item-<?= $responseAnswer->isSpongebob ? 'success' : 'danger' ?>">
+                    <strong><?= Html::encode($responseAnswer->quizQuestion->getFullTitle()) ?></strong><br>
+                    Gegeven antwoord: <?= Html::encode($responseAnswer->quizAnswer->text) ?> <?= ($responseAnswer->isCorrect ? '(Correct)' : '(Fout)') ?>
+                </li>
+            <?php endif; ?>
         <?php endforeach; ?>
     </ul>
 

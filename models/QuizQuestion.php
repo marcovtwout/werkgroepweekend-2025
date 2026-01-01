@@ -41,4 +41,9 @@ class QuizQuestion extends \yii\db\ActiveRecord
             ->orderBy(['QuizQuestion.nr' => SORT_ASC, 'QuizAnswer.position' => SORT_ASC])
             ->all();
     }
+
+    public function isSpongebobQuestion(): bool
+    {
+        return $this->getQuizAnswers()->andWhere(['isSpongebob' => true])->exists();
+    }
 }

@@ -16,6 +16,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+    <?= Html::a('View all', ['view-all'], ['class' => 'btn btn-secondary']) ?>
+
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
