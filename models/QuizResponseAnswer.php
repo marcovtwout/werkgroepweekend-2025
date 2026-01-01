@@ -11,7 +11,8 @@ use yii\db\ActiveQuery;
  * @property int $quizResponseId
  * @property int $quizQuestionId
  * @property int $quizAnswerId
- * @property int|null $isCorrect
+ * @property int $isCorrect
+ * @property int $isSpongebob
  *
  * @property QuizAnswer $quizAnswer
  * @property QuizQuestion $quizQuestion

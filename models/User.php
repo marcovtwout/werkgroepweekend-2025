@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveQuery;
 
 /**
  * This is the model class for table "User".
@@ -17,7 +18,7 @@ use Yii;
  * @property string $puzzle3Result
  *
  * @property Log[] $logs
- * @property QuizResponse $quizResponse
+ * @property QuizResponse[] $quizResponses
  */
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
@@ -27,7 +28,8 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     const PUZZLE_2_ELIMINATION = '2.2';
     const PUZZLE_3 = '3';
     const PUZZLE_4 = '4';
-    const PUZZLE_5 = '5';
+    const PUZZLE_5_TEST = '5';
+    const PUZZLE_5_RESULT = '5.1';
 
     /**
      * {@inheritdoc}
@@ -42,9 +44,9 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return $this->hasMany(Log::class, ['userId' => 'id']);
     }
 
-    public function getQuizResponse(): ActiveQuery
+    public function getQuizResponses(): ActiveQuery
     {
-        return $this->hasOne(QuizResponse::class, ['userId' => 'id']);
+        return $this->hasMany(QuizResponse::class, ['userId' => 'id']);
     }
 
     public static function findIdentity($id)

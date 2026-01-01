@@ -30,13 +30,13 @@ class Puzzle2Form extends Model
     {
         foreach($this->questions as $questionIndex => $question) {
             $answerIndex = $this->answers[$questionIndex] ?? null;
-            if (!isset($answerIndex) || !isset($question->quizAnswers[$answerIndex])) {
-                $this->addError($attribute, 'Ongeldig of ontbrekend antwoord');
+            if (!isset($answerIndex) || !isset($question->quizAnswers[(int) $answerIndex])) {
+                $this->addError($attribute, 'Alle vragen moeten beantwoord worden');
             }
         }
     }
 
-    public function createResponse(User $user)
+    public function createResponse(User $user): QuizResponse
     {
         return Yii::$app->db->transaction(function () use ($user) {
             $response = new QuizResponse();
@@ -52,6 +52,7 @@ class Puzzle2Form extends Model
                 $responseAnswer->quizQuestionId = $question->id;
                 $responseAnswer->quizAnswerId = $answer->id;
                 $responseAnswer->isCorrect = $answer->isCorrect;
+                $responseAnswer->isSpongebob = $answer->isSpongebob;
                 $responseAnswer->save();
             }
 

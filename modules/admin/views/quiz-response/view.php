@@ -21,6 +21,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'user.username',
             'datetime',
             'correctCount',
+            'spongebobCount',
+            'spongebobCount',
         ],
     ]) ?>
 
@@ -29,6 +31,17 @@ $this->params['breadcrumbs'][] = $this->title;
     <ul class="list-group">
         <?php foreach($model->quizResponseAnswers as $responseAnswer): ?>
             <li class="list-group-item list-group-item-<?= $responseAnswer->isCorrect ? 'success' : 'danger' ?>">
+                <strong><?= Html::encode($responseAnswer->quizQuestion->getFullTitle()) ?></strong><br>
+                Gegeven antwoord: <?= Html::encode($responseAnswer->quizAnswer->text) ?> <?= ($responseAnswer->isCorrect ? '(Correct)' : '(Fout)') ?>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+
+    <h3>Answers (Spongebob)</h3>
+
+    <ul class="list-group">
+        <?php foreach($model->quizResponseAnswers as $responseAnswer): ?>
+            <li class="list-group-item list-group-item-<?= $responseAnswer->isSpongebob ? 'success' : 'danger' ?>">
                 <strong><?= Html::encode($responseAnswer->quizQuestion->getFullTitle()) ?></strong><br>
                 Gegeven antwoord: <?= Html::encode($responseAnswer->quizAnswer->text) ?> <?= ($responseAnswer->isCorrect ? '(Correct)' : '(Fout)') ?>
             </li>

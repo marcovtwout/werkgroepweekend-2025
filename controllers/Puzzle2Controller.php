@@ -50,7 +50,7 @@ class Puzzle2Controller extends BaseController
             }
         }
 
-        return $this->render('index', [
+        return $this->render('test', [
             'model' => $model,
             'questions' => $questions,
         ]);

@@ -40,4 +40,9 @@ class QuizResponse extends \yii\db\ActiveRecord
     {
         return $this->getQuizResponseAnswers()->andWhere(['isCorrect' => true])->count();
     }
+
+    public function getSpongebobCount(): int
+    {
+        return $this->getQuizResponseAnswers()->andWhere(['isSpongebob' => true])->count();
+    }
 }

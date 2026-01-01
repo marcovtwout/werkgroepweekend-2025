@@ -20,7 +20,7 @@ class Puzzle4Controller extends BaseController
         if ($model->load(Yii::$app->request->post())) {
             Log::addEntry($user, 'puzzle4', $model->answer);
             if ($model->validate()) {
-                $user->currentPuzzle = User::PUZZLE_5;
+                $user->currentPuzzle = User::PUZZLE_5_RESULT;
                 $user->save();
 
                 return $this->refresh();

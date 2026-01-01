@@ -22,6 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'user.username',
             'datetime:datetime',
             'correctCount',
+            'spongebobCount',
             [
                 'class' => ActionColumn::className(),
                 'template' => '{view}',
