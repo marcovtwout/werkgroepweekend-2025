@@ -25,9 +25,6 @@ abstract class BaseController extends \app\controllers\BaseController
                         },
                     ],
                 ],
-                'denyCallback' => function () {
-                    throw new ForbiddenHttpException('Leuk geprobeerd.');
-                }
             ],
         ];
     }
