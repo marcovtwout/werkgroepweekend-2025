@@ -70,14 +70,13 @@ class Puzzle5Controller extends BaseController
         }
 
         $quizQuestions = QuizQuestion::findAllWithAnswersOrdered();
-        $quizResponses = QuizResponse::find()
+        $quizResponse = $user->getQuizResponses()
             ->orderBy(['datetime' => SORT_ASC])
-            ->groupBy(['userId'])
-            ->all();
+            ->one();
 
         return $this->render('result', [
             'quizQuestions' => $quizQuestions,
-            'quizResponses' => $quizResponses,
+            'quizResponse' => $quizResponse,
         ]);
     }
 

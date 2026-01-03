@@ -2,11 +2,11 @@
 
 /* @var $this \yii\web\View */
 /* @var $quizQuestions \app\models\QuizQuestion[] */
-/* @var $quizResponses \app\models\QuizResponse[] */
+/* @var $quizResponse \app\models\QuizResponse */
 
 use yii\bootstrap5\Html;
 
-$this->title = 'Finale';
+$this->title = 'Deductie';
 \yii\web\YiiAsset::register($this);
 
 $this->registerCss(<<<CSS
@@ -22,17 +22,15 @@ CSS);
 
 ?>
 
-<h3>Finale</h3>
+<h3>Deductie</h3>
 
 <p>
     Gelukt!
 </p>
 <p>
-    Hier zie je alle testresultaten uit de eerste ronde. En dan lukt het nu misschien
+    Hier zie je jouw testresultaten uit de eerste ronde. En dan lukt het nu misschien
     om antwoord te geven op die ene vraag..
 </p>
-
-<h4 class="mt-4"><?= Html::encode($this->title) ?></h4>
 
 <table class="table table-bordered table-striped table-sm">
     <thead>
@@ -40,21 +38,17 @@ CSS);
             <th>
                 Speler
             </th>
-            <?php foreach($quizResponses as $quizResponse): ?>
-                <th>
-                    <?= Html::encode($quizResponse->user->username) ?>
-                </th>
-            <?php endforeach; ?>
+            <th>
+                <?= Html::encode($quizResponse->user->username) ?>
+            </th>
         </tr>
         <tr>
             <th>
                 Totaalscore
             </th>
-            <?php foreach($quizResponses as $quizResponse): ?>
-                <th>
-                    <?= $quizResponse->getCorrectCount() ?>
-                </th>
-            <?php endforeach; ?>
+            <th>
+                <?= $quizResponse->getCorrectCount() ?>
+            </th>
         </tr>
     </thead>
     <tbody class="table-group-divider">
@@ -63,12 +57,10 @@ CSS);
                 <th>
                     Vraag <?= Html::encode($quizQuestion->nr) ?>
                 </th>
-                <?php foreach($quizResponses as $quizResponse): ?>
-                    <?php $givenAnswer = $quizResponse->quizResponseAnswers[$questionIndex]->quizAnswer; ?>
-                    <td>
-                        <?= Html::encode($givenAnswer->text) ?>
-                    </td>
-                <?php endforeach; ?>
+                <?php $givenAnswer = $quizResponse->quizResponseAnswers[$questionIndex]->quizAnswer; ?>
+                <td>
+                    <?= Html::encode($givenAnswer->text) ?>
+                </td>
             </tr>
         <?php endforeach; ?>
     </tbody>
