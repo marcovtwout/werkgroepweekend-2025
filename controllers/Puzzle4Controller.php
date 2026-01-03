@@ -17,19 +17,22 @@ class Puzzle4Controller extends BaseController
         }
 
         $model = new Puzzle4Form();
-        if ($model->load(Yii::$app->request->post())) {
-            Log::addEntry($user, 'puzzle4', $model->answer);
-            if ($model->validate()) {
-                $user->currentPuzzle = User::PUZZLE_5_TEST;
-                $user->save();
+        if (Yii::$app->params['enablePuzzle5']) {
+            if ($model->load(Yii::$app->request->post())) {
+                Log::addEntry($user, 'puzzle4', $model->answer);
+                if ($model->validate()) {
+                    $user->currentPuzzle = User::PUZZLE_5_TEST;
+                    $user->save();
 
-                return $this->refresh();
+                    return $this->refresh();
+                }
             }
         }
 
         return $this->render('index', [
             'model' => $model,
             'puzzle3Result' => $user->puzzle3Result,
+            'enablePuzzle5' => Yii::$app->params['enablePuzzle5'],
         ]);
     }
 }
