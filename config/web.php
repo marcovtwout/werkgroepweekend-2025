@@ -47,6 +47,10 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'puzzle6' => 'easteregg/one',
+                'wieisdemol' => 'easteregg/two',
+                'demol' => 'easteregg/two',
+                'marijkeisdemol' => 'easteregg/three',
             ],
         ],
     ],
