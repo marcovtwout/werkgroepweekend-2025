@@ -6,7 +6,7 @@
 
 use yii\bootstrap5\Html;
 
-$this->title = 'Deductie';
+$this->title = 'Scrabble';
 \yii\web\YiiAsset::register($this);
 
 $this->registerCss(<<<CSS
@@ -22,7 +22,7 @@ CSS);
 
 ?>
 
-<h3>Deductie</h3>
+<h3>Scrabble</h3>
 
 <p>
     Gelukt!

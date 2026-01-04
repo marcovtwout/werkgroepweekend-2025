@@ -8,11 +8,11 @@ use yii\bootstrap5\Html;
 /** @var Puzzle4Form $model */
 /** @var bool $enablePuzzle5 */
 
-$this->title = 'Gatenkaas';
+$this->title = 'Op volgorde';
 
 ?>
 
-<h3>Gatenkaas</h3>
+<h3>Op volgorde</h3>
 
 <p>
     Goed bezig! Hier is jouw volgende puzzelstukje:
