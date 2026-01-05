@@ -76,6 +76,8 @@ class Puzzle2Controller extends BaseController
         }
 
         if (!empty($_POST)) {
+            Log::addEntry($this->getUser(), 'puzzle2-elimination');
+
             $user->currentPuzzle = User::PUZZLE_3;
             $user->save();
 
