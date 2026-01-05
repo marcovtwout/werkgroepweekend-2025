@@ -14,7 +14,7 @@ $this->title = 'Leesvoer';
 <h3>Leesvoer</h3>
 
 <p>
-    Vanaf hier mag je samenwerken met de andere kandidaten.
+    Vanaf hier moet je samenwerken met de andere kandidaten om verder te komen. Jullie willen toch allemaal de bestemming bereiken?
 </p>
 
 <div class="card">
