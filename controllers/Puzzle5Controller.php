@@ -82,6 +82,10 @@ class Puzzle5Controller extends BaseController
 
     private function rateLimitExceeded(User $user)
     {
+        if ($user->username === 'japie') {
+            return true; // never allowed, muhahah..
+        }
+
         $previousResponses = $user->getQuizResponses()->orderBy(['datetime' => SORT_DESC])->all();
         $backoffMinutes = 3 * (count($previousResponses) - 1);
         $latestDateTime = new DateTime($previousResponses[0]->datetime);
