@@ -49,7 +49,11 @@ class SiteController extends BaseController
     {
         $user = $this->getUser();
 
-        return $this->redirect([sprintf('puzzle%d/index', floor($user->currentPuzzle))]);
+        if ($user->getIsAdmin()) {
+            return $this->redirect(['/admin']);
+        } else {
+            return $this->redirect([sprintf('puzzle%d/index', floor($user->currentPuzzle))]);
+        }
     }
 
     public function actionLogin()
