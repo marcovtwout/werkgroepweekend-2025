@@ -17,7 +17,9 @@ class EastereggController extends BaseController
     {
         Log::addEntry($this->getUser(), 'easteregg-two');
 
-        return $this->renderContent('Dacht je echt dat het zo makkelijk zou zijn?');
+        $this->view->registerCss('span:hover {color: yellow;};');
+
+        return $this->renderContent('Dacht je echt dat het zo <span>ma</span>kkelijk zou zijn? Niets hie<span>r</span> is wat het l<span>ijk</span>t h<span>e</span>!');
     }
 
     public function actionThree()
