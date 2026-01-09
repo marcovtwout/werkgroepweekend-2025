@@ -32,7 +32,7 @@ class QuizResponseController extends BaseController
         ]);
     }
 
-    public function actionViewAll()
+    public function actionViewAllInitial()
     {
         $quizQuestions = QuizQuestion::findAllWithAnswersOrdered();
         $quizResponses = QuizResponse::find()
@@ -40,7 +40,22 @@ class QuizResponseController extends BaseController
             ->groupBy(['userId'])
             ->all();
 
-        return $this->render('viewAll', [
+        return $this->render('viewAllInitial', [
+            'quizQuestions' => $quizQuestions,
+            'quizResponses' => $quizResponses,
+        ]);
+    }
+
+    public function actionViewAllSpongebob()
+    {
+        $quizQuestions = QuizQuestion::findAllWithAnswersOrdered();
+        $quizResponses = QuizResponse::find()
+            ->andWhere('datetime > "2026-01-09"')
+            ->orderBy(['datetime' => SORT_DESC])
+            ->groupBy(['userId'])
+            ->all();
+
+        return $this->render('viewAllSpongebob', [
             'quizQuestions' => $quizQuestions,
             'quizResponses' => $quizResponses,
         ]);
