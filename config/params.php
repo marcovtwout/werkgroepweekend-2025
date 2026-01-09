@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'enablePuzzle5' => false,
+    'enablePuzzle5' => true,
 ];
