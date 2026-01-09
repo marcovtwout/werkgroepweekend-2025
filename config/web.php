@@ -48,9 +48,10 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 'puzzle6' => 'easteregg/one',
-                'wieisdemol' => 'easteregg/two',
                 'demol' => 'easteregg/two',
-                'marijkeisdemol' => 'easteregg/three',
+                'wieisdemol' => 'easteregg/three',
+                'marijkeisdemol' => 'easteregg/solution',
+                '<name>isdemol' => 'easteregg/four',
             ],
         ],
     ],
