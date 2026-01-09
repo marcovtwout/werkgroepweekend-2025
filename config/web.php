@@ -8,6 +8,7 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'language' => 'nl',
+    'timeZone' => 'Europe/Amsterdam',
     'name' => 'Werkgroepweekend 2025-2026',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
