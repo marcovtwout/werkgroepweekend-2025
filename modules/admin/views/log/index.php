@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'user.username',
             'action',
             'data:ntext',
-            'datetime',
+            'datetime:datetime',
             [
                 'class' => ActionColumn::className(),
                 'template' => '{view}',

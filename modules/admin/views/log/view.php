@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'user.username',
             'action',
             'data:ntext',
-            'datetime',
+            'datetime:datetime',
         ],
     ]) ?>
 
