@@ -4,6 +4,7 @@ namespace app\modules\admin\controllers;
 
 use app\models\QuizQuestion;
 use app\models\QuizResponse;
+use app\models\User;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 
@@ -49,11 +50,16 @@ class QuizResponseController extends BaseController
     public function actionViewAllSpongebob()
     {
         $quizQuestions = QuizQuestion::findAllWithAnswersOrdered();
-        $quizResponses = QuizResponse::find()
-            ->andWhere('datetime > "2026-01-09"')
-            ->orderBy(['datetime' => SORT_DESC])
-            ->groupBy(['userId'])
+
+        $users = User::find()
+            ->innerJoinWith('quizResponses')
+            ->andWhere('QuizResponse.datetime > "2026-01-09"')
+            ->groupBy('User.id')
             ->all();
+        $quizResponses = [];
+        foreach($users as $user) {
+            $quizResponses[] = $user->getQuizResponses()->orderBy(['datetime' => SORT_DESC])->one();
+        }
 
         return $this->render('viewAllSpongebob', [
             'quizQuestions' => $quizQuestions,
