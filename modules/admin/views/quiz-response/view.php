@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'user.username',
-            'datetime',
+            'datetime:datetime',
             'correctCount',
             'spongebobCount',
         ],
