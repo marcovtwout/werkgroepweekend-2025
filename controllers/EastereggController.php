@@ -31,14 +31,14 @@ class EastereggController extends BaseController
 
     public function actionFour()
     {
-        Log::addEntry($this->getUser(), 'easteregg-three');
+        Log::addEntry($this->getUser(), 'easteregg-four');
 
         return $this->renderContent('Echt niet.');
     }
 
     public function actionSolution()
     {
-        Log::addEntry($this->getUser(), 'easteregg-three');
+        Log::addEntry($this->getUser(), 'easteregg-solution');
 
         return $this->renderContent('Inderdaad.');
     }
